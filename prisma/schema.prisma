@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model SiteSettings {
+  id                String   @id @default("singleton")
+  heroEyebrow       String   @default("// Developer & Tech Enthusiast.") @db.VarChar(120)
+  heroHeadlines     Json
+  heroName          String   @default("Asdarium D.") @db.VarChar(80)
+  heroTagline       String   @db.Text
+  statYears         String   @default("4+") @db.VarChar(10)
+  statYearsLabel    String   @default("Years Exp") @db.VarChar(30)
+  statProjects      String   @default("10+") @db.VarChar(10)
+  statProjectsLabel String   @default("Projects Done") @db.VarChar(30)
+  statShipped       String   @default("100%") @db.VarChar(10)
+  statShippedLabel  String   @default("Shipped") @db.VarChar(30)
+  aboutParagraph1   String   @db.Text
+  aboutParagraph2   String   @db.Text
+  aboutParagraph3   String   @db.Text
+  aboutSignature    String   @db.VarChar(120)
+  profileImageUrl   String   @default("/asdar.jpg") @db.VarChar(255)
+  profileCaption    String   @default("Photo / Asdarium D. / 2026") @db.VarChar(120)
+  contactHeadlines  Json
+  contactIntro      String   @db.Text
+  contactWhoami     String   @db.VarChar(120)
+  contactStatus     String   @db.VarChar(120)
+  contactLocation   String   @db.VarChar(120)
+  contactEmail      String   @db.VarChar(120)
+  cvUrl             String   @default("/CV_Asdarium.pdf") @db.VarChar(255)
+  githubUrl         String   @default("https://github.com/nadihero") @db.VarChar(255)
+  projectsGithubUrl String   @default("https://github.com/nadihero") @db.VarChar(255)
+  footerCopyright   String   @default("© 2026 Asdarium D. — The Asdarium Gazette. All rights reserved.") @db.VarChar(255)
+  updatedAt         DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  year        String   @db.VarChar(20)
+  title       String   @db.VarChar(120)
+  description String   @db.Text
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("achievements")
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  period      String   @db.VarChar(60)
+  title       String   @db.VarChar(120)
+  company     String   @db.VarChar(120)
+  type        String   @db.VarChar(30)
+  description String   @db.Text
+  tags        Json
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("experiences")
+}
+
+model SkillGroup {
+  id        String   @id @default(cuid())
+  label     String   @db.VarChar(60)
+  value     String   @db.VarChar(255)
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("skill_groups")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  num         String   @db.VarChar(20)
+  category    String   @db.VarChar(30)
+  title       String   @db.VarChar(120)
+  description String   @db.Text
+  tags        Json
+  repoUrl     String?  @db.VarChar(255)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("projects")
+}
+
+model ContactLink {
+  id        String   @id @default(cuid())
+  label     String   @db.VarChar(40)
+  href      String   @db.VarChar(255)
+  text      String   @db.VarChar(120)
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("contact_links")
+}
+
+model TilEntry {
+  id          String   @id @default(cuid())
+  date        DateTime @db.Date
+  title       String   @db.VarChar(120)
+  description String   @db.Text
+  codeSnippet String?  @db.VarChar(80)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date(sort: Desc)])
+  @@map("til_entries")
+}

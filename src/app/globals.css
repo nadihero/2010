@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+body {
+  background-color: #f4edd4;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.008) 2px,
+      rgba(0, 0, 0, 0.008) 4px
+    );
+}
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  font-weight: 900;
+  margin: 0.1em 0.15em 0 0;
+  color: #1a1a1a;
+}
+
+.bio-text p {
+  text-align: justify;
+  text-indent: 1.5em;
+  line-height: 1.6;
+}
+
+.btn-vintage {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-vintage:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.btn-vintage:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.btn-vintage:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-vintage {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.card-vintage:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.img-grayscale {
+  filter: grayscale(100%) contrast(1.15);
+}
+
+.double-border-bottom {
+  border-bottom: 4px double #000;
+}
+
+.nav-link.active::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: #000;
+  border-top: 2px solid #f4edd4;
+  margin-top: 2px;
+}
+
+.section-reveal {
+  animation: reveal 0.2s ease forwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-vintage:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.modal-overlay {
+  transition: opacity 200ms ease;
+}
+
+.modal-content {
+  transition: transform 200ms ease;
+}
+
+.modal-overlay.open .modal-content {
+  transform: translateY(0);
+}
+
+.modal-overlay:not(.open) .modal-content {
+  transform: translateY(-20px);
+}
+
+::selection {
+  background: #000;
+  color: #f4edd4;
+}
+
+@media (max-width: 768px) {
+  .drop-cap::first-letter {
+    font-size: 3rem;
+  }
+}

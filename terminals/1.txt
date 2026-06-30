@@ -1,0 +1,26 @@
+---
+pid: 3272
+cwd: "D:\Portfolio Webiste\portfolio-next"
+command: "cd \"D:\\Portfolio Webiste\\portfolio-next\"; npx next build"
+started_at: 2026-06-29T23:58:34.329Z
+running_for_ms: 1015002  
+---
+   ▲ Next.js 15.5.19
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 15.2s
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/components/admin/AdminDashboard.tsx:334:26
+Type error: Property 'year' does not exist on type '{ id: string; }'.
+
+  332 |             getInitialForm={() => ({ year: "", title: "", description: "" })}
+  333 |             itemToForm={(item) => ({
+> 334 |               year: item.year,
+      |                          ^
+  335 |               title: item.title,
+  336 |               description: item.description,
+  337 |             })}
+Next.js build worker exited with code: 1 and signal: null
